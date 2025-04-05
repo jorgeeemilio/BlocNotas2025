@@ -47,12 +47,12 @@ public class Controlador implements WindowListener, ActionListener
 		else if(evento.getSource().equals(vista.mniAbrir))
 		{
 			vista.fdAbrir.setVisible(true);
-			vista.txaTexto.setText("");
 			try
 			{
 				String rutaFichero = vista.fdAbrir.getDirectory() + "\\" + vista.fdAbrir.getFile();
 				FileReader fr = new FileReader(rutaFichero);
 				BufferedReader entrada = new BufferedReader(fr);
+				vista.txaTexto.setText("");
 				String contenido = "";
 				while((contenido=entrada.readLine())!=null)
 				{
@@ -65,11 +65,13 @@ public class Controlador implements WindowListener, ActionListener
 			catch(FileNotFoundException e)
 			{
 				vista.lblMensaje.setText("Archivo NO encontrado");
+				vista.mensaje.setTitle("Error");
 				vista.mensaje.setVisible(true);
 			}
 			catch(IOException i)
 			{
 				vista.lblMensaje.setText("Se produjo un error de Archivo");
+				vista.mensaje.setTitle("Error");
 				vista.mensaje.setVisible(true);
 			}
 		}
@@ -91,22 +93,26 @@ public class Controlador implements WindowListener, ActionListener
 			catch(IOException i)
 			{
 				vista.lblMensaje.setText("Se produjo un error de Archivo");
+				vista.mensaje.setTitle("Error");
 				vista.mensaje.setVisible(true);
 			}
 		}
 		else if(evento.getSource().equals(vista.mniContarPalabras))
 		{
 			vista.lblMensaje.setText("Hay " + modelo.contarPalabras(vista.txaTexto.getText()) + " palabras en el texto");
+			vista.mensaje.setTitle("Palabras");
 			vista.mensaje.setVisible(true);
 		}
 		else if(evento.getSource().equals(vista.mniContarLetras))
 		{
 			vista.lblMensaje.setText("Hay " + modelo.contarLetras(vista.txaTexto.getText()) + " letras en el texto");
+			vista.mensaje.setTitle("Letras");
 			vista.mensaje.setVisible(true);
 		}
 		else if(evento.getSource().equals(vista.mniContarVocales))
 		{
 			vista.lblMensaje.setText("Hay " + modelo.contarVocales(vista.txaTexto.getText()) + " vocales en el texto");
+			vista.mensaje.setTitle("Vocales");
 			vista.mensaje.setVisible(true);
 		}
 	}
