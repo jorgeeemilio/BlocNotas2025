@@ -47,6 +47,7 @@ public class Controlador implements WindowListener, ActionListener
 		else if(evento.getSource().equals(vista.mniAbrir))
 		{
 			vista.fdAbrir.setVisible(true);
+			vista.txaTexto.setText("");
 			try
 			{
 				String rutaFichero = vista.fdAbrir.getDirectory() + "\\" + vista.fdAbrir.getFile();
